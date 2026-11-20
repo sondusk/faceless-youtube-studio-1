@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faceless YouTube Studio</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #101827;
+  color: white;
+}
+.container {
+  max-width: 650px;
+  margin: 30px auto;
+  padding: 24px;
+  background: #1d293b;
+  border-radius: 16px;
+}
+h1 { color: #60a5fa; }
+p { color: #cbd5e1; }
+input, button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+input { background: white; color: #111; }
+button {
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.result {
+  margin-top: 20px;
+  padding: 16px;
+  background: #27364b;
+  border-radius: 10px;
+  line-height: 1.8;
+}
+.idea { margin-bottom: 16px; }
+footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #94a3b8;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🎬 Faceless YouTube Studio</h1>
+  <p>Your YouTube Content Idea Generator</p>
+
+  <h3>Enter Your Video Topic</h3>
+  <input id="topic" placeholder="Example: Vimes Boots Theory">
+
+  <button onclick="generateIdeas()">
+    Generate Video Ideas
+  </button>
+
+  <div id="results"></div>
+
+  <footer>Created with GitHub | Version 1.0</footer>
+</div>
+
+<script>
+function generateIdeas() {
+  const topic = document.getElementById("topic").value.trim();
+  const results = document.getElementById("results");
+
+  if (!topic) {
+    results.innerHTML = "<p>Please enter a topic!</p>";
+    return;
+  }
+
+  const ideas = [
+    "What is " + topic + "? Explained Simply",
+    "5 Things You Must Know About " + topic,
+    "The Hidden Truth Behind " + topic,
+    topic + " Explained With Real Life Examples",
+    "How " + topic + " Can Change Your Life"
+  ];
+
+  results.innerHTML = "<div class='result'><h3>💡 Your Video Ideas</h3>" +
+    ideas.map((idea, i) =>
+      "<div class='idea'>" + (i+1) + ". " + idea + "</div>"
+    ).join("") + "</div>";
+}
+</script>
+</body>
+</html>
