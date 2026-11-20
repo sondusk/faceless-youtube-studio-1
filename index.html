@@ -4,94 +4,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faceless YouTube Studio</title>
+<title>AI YouTube Script Generator</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background: #101827;
-  color: white;
+*{box-sizing:border-box}
+body{
+ margin:0;padding:18px;
+ background:#101827;color:white;
+ font-family:Arial,sans-serif
 }
-.container {
-  max-width: 650px;
-  margin: 30px auto;
-  padding: 24px;
-  background: #1d293b;
-  border-radius: 16px;
+.container{
+ max-width:700px;margin:20px auto;
+ background:#1d293b;padding:22px;
+ border-radius:16px
 }
-h1 { color: #60a5fa; }
-p { color: #cbd5e1; }
-input, button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
+h1{color:#60a5fa}
+label{display:block;margin-top:18px}
+input,select,button{
+ width:100%;padding:14px;margin-top:8px;
+ border:0;border-radius:8px;font-size:16px
 }
-input { background: white; color: #111; }
-button {
-  background: #2563eb;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+button{background:#2563eb;color:white;font-weight:bold}
+#output{
+ white-space:pre-wrap;background:#27364b;
+ padding:18px;border-radius:10px;
+ margin-top:20px;line-height:1.8
 }
-.result {
-  margin-top: 20px;
-  padding: 16px;
-  background: #27364b;
-  border-radius: 10px;
-  line-height: 1.8;
-}
-.idea { margin-bottom: 16px; }
-footer {
-  text-align: center;
-  margin-top: 25px;
-  color: #94a3b8;
-}
+.small{color:#94a3b8}
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>🎬 Faceless YouTube Studio</h1>
-  <p>Your YouTube Content Idea Generator</p>
+<h1>🎬 AI Script Studio</h1>
+<p class="small">Faceless YouTube Script Generator</p>
 
-  <h3>Enter Your Video Topic</h3>
-  <input id="topic" placeholder="Example: Vimes Boots Theory">
+<label>Video Topic</label>
+<input id="topic" placeholder="Example: Vimes Boots Theory">
 
-  <button onclick="generateIdeas()">
-    Generate Video Ideas
-  </button>
+<label>Video Language</label>
+<select id="language">
+<option value="Telugu">తెలుగు</option>
+<option value="English">English</option>
+</select>
 
-  <div id="results"></div>
+<label>Video Duration</label>
+<select id="duration">
+<option value="3">3 Minutes</option>
+<option value="5">5 Minutes</option>
+<option value="8">8 Minutes</option>
+<option value="10">10 Minutes</option>
+</select>
 
-  <footer>Created with GitHub | Version 1.0</footer>
+<button onclick="generateScript()">Generate Script</button>
+<button onclick="copyScript()" style="background:#059669">
+Copy Script
+</button>
+
+<div id="output">మీ Topic నమోదు చేసి Generate Script నొక్కండి.</div>
 </div>
 
 <script>
-function generateIdeas() {
-  const topic = document.getElementById("topic").value.trim();
-  const results = document.getElementById("results");
+function generateScript(){
+ const topic=document.getElementById("topic").value.trim();
+ const lang=document.getElementById("language").value;
+ const duration=document.getElementById("duration").value;
+ const output=document.getElementById("output");
 
-  if (!topic) {
-    results.innerHTML = "<p>Please enter a topic!</p>";
-    return;
-  }
+ if(!topic){
+  output.textContent="Please enter a video topic!";
+  return;
+ }
 
-  const ideas = [
-    "What is " + topic + "? Explained Simply",
-    "5 Things You Must Know About " + topic,
-    "The Hidden Truth Behind " + topic,
-    topic + " Explained With Real Life Examples",
-    "How " + topic + " Can Change Your Life"
-  ];
+ let script="";
 
-  results.innerHTML = "<div class='result'><h3>💡 Your Video Ideas</h3>" +
-    ideas.map((idea, i) =>
-      "<div class='idea'>" + (i+1) + ". " + idea + "</div>"
-    ).join("") + "</div>";
+ if(lang==="Telugu"){
+ script=`
+🎬 VIDEO TOPIC: ${topic}
+⏱️ DURATION: ${duration} MINUTES
+
+━━━━━━━━━━━━━━━━━━
+
+🎯 1. HOOK (ప్రారంభం)
+
+మీరు ఎప్పుడైనా ఆలోచించారా?
+${topic} గురించి మీకు నిజంగా ఎంత తెలుసు?
+ఈ రోజు మనం ఒక ఆసక్తికరమైన విషయాన్ని తెలుసుకోబోతున్నాం.
+
+🎙️ 2. INTRODUCTION
+
+నమస్కారం మిత్రులారా!
+మన ఛానల్‌కు స్వాగతం.
+ఈ రోజు మనం ${topic} గురించి
+సులభంగా అర్థం చేసుకుందాం.
+
+📚 3. MAIN EXPLANATION
+
+${topic} అంటే ఏమిటి?
+
+దీనిని అర్థం చేసుకోవడానికి
+ముందుగా దాని ప్రాథమిక భావనను తెలుసుకోవాలి.
+
+ఇది మన రోజువారీ జీవితంలో
+ఎలా ఉపయోగపడుతుందో ఇప్పుడు చూద్దాం.
+
+💡 4. REAL LIFE EXAMPLE
+
+ఒక సాధారణ వ్యక్తి జీవితంలో
+${topic} ఎలా ప్రభావం చూపుతుందో
+ఒక ఉదాహరణ ద్వారా అర్థం చేసుకుందాం.
+
+🔍 5. KEY TAKEAWAYS
+
+1. మొదటి ముఖ్యమైన విషయం.
+2. రెండవ ముఖ్యమైన విషయం.
+3. మనం గుర్తుంచుకోవాల్సిన విషయం.
+
+🎬 6. CONCLUSION
+
+ఈ రోజు మనం ${topic} గురించి
+కొన్ని ముఖ్యమైన విషయాలు తెలుసుకున్నాం.
+
+👍 మీకు ఈ వీడియో నచ్చితే
+Like చేయండి, Subscribe చేయండి.
+
+మళ్లీ మరొక ఆసక్తికరమైన వీడియోతో కలుద్దాం.
+
+ధన్యవాదాలు!
+`;
+ } else {
+ script=`
+VIDEO TOPIC: ${topic}
+DURATION: ${duration} MINUTES
+
+1. HOOK
+
+Have you ever wondered about ${topic}?
+Today, we will explore an interesting idea.
+
+2. INTRODUCTION
+
+Welcome to our channel!
+In this video, we will understand ${topic}
+in a simple and practical way.
+
+3. MAIN EXPLANATION
+
+What is ${topic}?
+Let's understand its basic concept
+and why it matters.
+
+4. REAL LIFE EXAMPLE
+
+Imagine an ordinary person dealing
+with a situation related to ${topic}.
+Let's explore the example.
+
+5. KEY TAKEAWAYS
+
+- Understand the basic concept.
+- Explore its real-world impact.
+- Remember the important lessons.
+
+6. CONCLUSION
+
+Now you have a basic understanding
+of ${topic}.
+
+Like, share and subscribe
+for more interesting videos.
+
+Thank you for watching!
+`;
+ }
+
+ output.textContent=script;
+}
+
+async function copyScript(){
+ const text=document.getElementById("output").textContent;
+ try{
+  await navigator.clipboard.writeText(text);
+  alert("Script copied successfully!");
+ }catch(e){
+  const area=document.createElement("textarea");
+  area.value=text;
+  document.body.appendChild(area);
+  area.select();
+  document.execCommand("copy");
+  area.remove();
+  alert("Script copied!");
+ }
 }
 </script>
 </body>
